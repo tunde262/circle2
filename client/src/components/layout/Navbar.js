@@ -50,7 +50,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
                     <span className="hide-sm">Logout</span>
                 </a>
             </li>
-            <li><Link className="cta" to="/create"><button>Create Something</button></Link></li>
+            <li><Link className="cta" to="/create"><button>Create</button></Link></li>
         </Fragment>
     );
 
