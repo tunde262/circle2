@@ -54,7 +54,7 @@ const Landing = ({ setAlert, register,login, isAuthenticated }) => {
         <main id="home">
             <div className="jumbotron" id="jumbotron">
                 <div className="form-container sign-in-container">
-                    <form onSubmit={e => signIn(e)}>
+                    <form id="auth-form" onSubmit={e => signIn(e)}>
                         <h1>Sign In</h1>
                         <span>Welcome back to our Circle :)</span>
                         <input type="email" placeholder="Email" name="email" value={email} onChange={e => onChange(e)} />
@@ -66,7 +66,7 @@ const Landing = ({ setAlert, register,login, isAuthenticated }) => {
                     </form>
                 </div>
                 <div className="form-container sign-up-container" id="sign-up-container">
-                    <form onSubmit={e => signUp(e)}>
+                    <form id="auth-form" onSubmit={e => signUp(e)}>
                         <h1>Create Account</h1>
                         <span>Welcome to our Circle!</span>
                         <input type="text" placeholder="Name" name="name" value={name} onChange={e => onChange(e)} />

@@ -25,7 +25,7 @@ const ProjectSchema = new Schema({
     },
     public: {
         type: Boolean,
-        default: false
+        default: true
     },
     likes: [
         {

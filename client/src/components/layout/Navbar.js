@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../../actions/auth';
 import thumbnail from '../../img/thumbsmall.jpg';
 
-const Navbar = () => {
+const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
     const [showMenu, setMenu] = useState(false);
 
@@ -34,10 +38,30 @@ const Navbar = () => {
         }
     }
 
+    const authLinks = (
+        <Fragment>
+            {/* <li><a href="#"><i className="far fa-heart"></i></a></li>
+            <li><a href="#"><i className="far fa-comment-alt"></i></a></li>
+            <li><a href="#"><i className="fas fa-ellipsis-h"></i></a></li> */}
+            <li><Link to="/dashboard">My Portfolio</Link></li>
+            <li>
+                <a onClick={logout} href="#!">
+                    <i className="fas fa-sign-out-alt"></i>{' '}
+                    <span className="hide-sm">Logout</span>
+                </a>
+            </li>
+            <li><Link className="cta" to="/create"><button>Create</button></Link></li>
+        </Fragment>
+    );
+
+    const guestLinks = (
+        <Link className="cta" to="/"><button>Sign Up</button></Link>
+    );
+
     return (
-        <header className="nav">
-            <div style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
-                <h1 className="logo">Circle2</h1>
+        <header>
+            <div className="nav">
+                <Link to="/"><h1 className="logo">Circle2</h1></Link>
                 <div className="social-container">
                     <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
                     <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
@@ -48,20 +72,16 @@ const Navbar = () => {
                 <div className="nav-bar">
                     <nav>
                         <ul className="nav-links">
-                            <li><a href="#">Projects</a></li>
-                            <li><a href="#">Chat</a></li>
-                            <li><a href="#">Blogs</a></li>
-                            <li><a href="#">Jobs</a></li>
-                            <a className="cta" href="#"><button>Sign Up</button></a>
+                            <li><Link to="/projects">Projects</Link></li>
+                            <li><Link to="/posts">Blogs</Link></li>
+                            {/* <li><Link to="/chat">Chat</Link></li>
+                            <li><Link to="/jobs">Jobs</Link></li> */}
+                            { !loading && ( isAuthenticated ? authLinks : guestLinks )}
                         </ul>
                     </nav>
                 </div>
-                
-                <div className="menu-btn" onClick={e => toggleMenu(e)}>
-                    <div className="btn-line"></div>
-                    <div className="btn-line"></div>
-                    <div className="btn-line"></div>
-                </div>
+
+                {/* { !loading && (<Fragment>{ isAuthenticated ? authLinks : guestLinks }</Fragment>)}
 
                 <nav className="nav-menu">
                     <div className="nav-menu-portrait">
@@ -70,7 +90,7 @@ const Navbar = () => {
                         </div>
                     </div>
                     <ul className="nav-menu-nav">
-                        <div>
+                        <div className="mobile">
                             <li className="nav-item">
                                 <a href="about.html" className="nav-link">
                                 Projects</a>
@@ -104,11 +124,26 @@ const Navbar = () => {
                             <a href="index.html" className="nav-link">
                             Wallet</a>
                         </li>
+                        <li>
+                            <a onClick={logout} href="#!">
+                                <i className="fas fa-sign-out-alt"></i>{' '}
+                                <span className="hide-sm">Logout</span>
+                            </a>
+                        </li>
                     </ul>
-                </nav>
+                </nav> */}
             </div>
         </header>
     )
 }
 
-export default Navbar;
+Navbar.propTypes = {
+    logout: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+}
+
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+
+export default connect(mapStateToProps, { logout })(Navbar);
