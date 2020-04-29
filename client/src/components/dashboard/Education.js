@@ -15,7 +15,7 @@ const Education = ({ education, deleteEducation }) => {
                 }
             </td>
             <td>
-                <i style={{transform: "scale(1.5)"}}  class="fas fa-trash" onClick={() => deleteEducation(edu._id)}></i>
+                <i style={{transform: "scale(1.5)"}}  className="fas fa-trash" onClick={() => deleteEducation(edu._id)}></i>
             </td>
         </tr>
     ));
