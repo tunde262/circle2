@@ -1,1 +1,6 @@
-{}
+{
+    "mongoURI": "mongodb+srv://tundeA:adepitan1@citycircle-ynxo1.gcp.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "1a2b3c4d",
+    "githubClientId": "eed24ed10c882e4b3d7f",
+    "githubSecret": "1c5bfdc2d9da79dc1542a4583c8c58a7970be077"
+}
