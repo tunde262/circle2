@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types'
 
 const ProfileItem = ({ profile: {
     user: { _id, name },
@@ -13,7 +12,7 @@ const ProfileItem = ({ profile: {
     return (
         <div className="profile bg-light">
             <img src="https://www.hardiagedcare.com.au/wp-content/uploads/2019/02/default-avatar-profile-icon-vector-18942381.jpg" 
-            className="round-img" />
+            className="round-img" alt='img' />
             <div>
                 <h2>{name}</h2>
                 <p>{status} {company && <span> at {company}</span>}</p>
@@ -32,9 +31,5 @@ const ProfileItem = ({ profile: {
         </div>
     )
 };
-
-ProfileItem.propTypes = {
-
-}
 
 export default ProfileItem

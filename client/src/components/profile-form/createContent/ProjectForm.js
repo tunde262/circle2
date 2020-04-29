@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addProject } from '../../../actions/project';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import TextField from 'material-ui/TextField';
 
 const ProjectForm = ({ addProject }) => {
     const [postData, setPostData] = useState({
@@ -20,7 +18,6 @@ const ProjectForm = ({ addProject }) => {
     } 
 
   return (
-    <MuiThemeProvider>
         <main id="home" style={{textAlign: "center"}}>
         <h1 className='large text-primary'>Add a Project</h1>
         <p className='lead'>
@@ -64,7 +61,6 @@ const ProjectForm = ({ addProject }) => {
             </Link>
         </form>
         </main>
-    </MuiThemeProvider>
   );
 };
 

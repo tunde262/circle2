@@ -1,42 +1,41 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
-import thumbnail from '../../img/thumbsmall.jpg';
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
-    const [showMenu, setMenu] = useState(false);
+    // const [showMenu, setMenu] = useState(false);
 
-    const toggleMenu = e => {
-        const menuBtn = document.querySelector('.menu-btn');
-        const navMenu = document.querySelector('.nav-menu');
-        const menuNav = document.querySelector('.nav-menu-nav');
-        const menuPortrait = document.querySelector('.nav-menu-portrait');
+    // const toggleMenu = e => {
+    //     const menuBtn = document.querySelector('.menu-btn');
+    //     const navMenu = document.querySelector('.nav-menu');
+    //     const menuNav = document.querySelector('.nav-menu-nav');
+    //     const menuPortrait = document.querySelector('.nav-menu-portrait');
 
-        const navItems = document.querySelectorAll('.nav-item');
+    //     const navItems = document.querySelectorAll('.nav-item');
 
-        if(!showMenu) {
-            menuBtn.classList.add('close');
-            navMenu.classList.add('show');
-            menuNav.classList.add('show');
-            menuPortrait.classList.add('show');
-            navItems.forEach(item => item.classList.add('show'));
+    //     if(!showMenu) {
+    //         menuBtn.classList.add('close');
+    //         navMenu.classList.add('show');
+    //         menuNav.classList.add('show');
+    //         menuPortrait.classList.add('show');
+    //         navItems.forEach(item => item.classList.add('show'));
     
-            // Set Menu State
-            setMenu(!showMenu);
-        } else {
-            menuBtn.classList.remove('close');
-            navMenu.classList.remove('show');
-            menuNav.classList.remove('show');
-            menuPortrait.classList.remove('show');
-            navItems.forEach(item => item.classList.remove('show'));
+    //         // Set Menu State
+    //         setMenu(!showMenu);
+    //     } else {
+    //         menuBtn.classList.remove('close');
+    //         navMenu.classList.remove('show');
+    //         menuNav.classList.remove('show');
+    //         menuPortrait.classList.remove('show');
+    //         navItems.forEach(item => item.classList.remove('show'));
     
-            // Set Menu State
-            setMenu(!showMenu);
-        }
-    }
+    //         // Set Menu State
+    //         setMenu(!showMenu);
+    //     }
+    // }
 
     const authLinks = (
         <Fragment>
@@ -63,9 +62,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             <div className="nav">
                 <Link to="/"><h1 className="logo">Circle2</h1></Link>
                 <div className="social-container">
-                    <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-                    <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-                    <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
+                    <a href="https://facebook.com/circle2" className="social"><i className="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/circle2" className="social"><i className="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com/circle2" className="social"><i className="fab fa-instagram"></i></a>
                 </div>
             </div>
             <div>

@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const About = ({ profile: {
@@ -57,10 +56,6 @@ const About = ({ profile: {
             </div>
         </Fragment>
     )
-}
-
-About.propTypes = {
-
 }
 
 export default About

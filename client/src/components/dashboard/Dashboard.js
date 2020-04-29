@@ -25,7 +25,7 @@ const Dashboard = ({ getCurrentProfile, deleteAccount, auth: { user }, profile: 
             </div>
             {loading && profile === null ? <Spinner /> : <div className="portfolio">
                 <section className="portfolio-block">
-                    <img src="https://www.hardiagedcare.com.au/wp-content/uploads/2019/02/default-avatar-profile-icon-vector-18942381.jpg" className="round-img" />
+                    <img src="https://www.hardiagedcare.com.au/wp-content/uploads/2019/02/default-avatar-profile-icon-vector-18942381.jpg" alt='img' className="round-img" />
                     {profile !== null && (
                         <About profile={profile} />
                     )}
@@ -37,10 +37,10 @@ const Dashboard = ({ getCurrentProfile, deleteAccount, auth: { user }, profile: 
                     <div className="thead">
                         <nav>
                             <ul className="nav-links">
-                                <li><h2><a href="#">About</a></h2></li>
-                                <li><h2><a href="#">Projects</a></h2></li>
-                                <li><h2><a href="#">Blog Posts</a></h2></li>
-                                <li><h2><a href="#">Repositories</a></h2></li>
+                                <li><h2><a href="/dashboard">About</a></h2></li>
+                                <li><h2><a href="/dashboard">Projects</a></h2></li>
+                                <li><h2><a href="/dashboard">Blog Posts</a></h2></li>
+                                <li><h2><a href="/dashboard">Repositories</a></h2></li>
                             </ul>
                         </nav>
                     </div>

@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import Moment from 'react-moment';
+// import { Link } from 'react-router-dom';
+// import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { addLike, removeLike, deleteProject } from '../../actions/project';
 
@@ -20,7 +20,7 @@ const ProjectCard = ({
             </h2>
         </div>
         <div className="card_image-container">
-            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiQjEyMDd9&auto=format&fit=crop&w=1200&q=80" />
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiQjEyMDd9&auto=format&fit=crop&w=1200&q=80" alt='img' />
         </div>
         <div className="card_stats">
             <div className="stat">
