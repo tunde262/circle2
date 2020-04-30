@@ -9,8 +9,8 @@ import AddExperience from '../profile-form/AddExperience';
 import AddEducation from '../profile-form/AddEducation';
 import Profiles from '../profiles/Profiles';
 import Profile from '../profile/Profile';
-import Posts from '../posts/Posts';
-import Projects from '../projects/Projects';
+import PostPage from '../pages/PostPage';
+import ProjectPage from '../projects/Projects';
 import Post from '../post/Post';
 import CreatePage from '../profile-form/createContent/CreatePage';
 import NotFound from '../layout/NotFound';
@@ -23,8 +23,8 @@ const Routes = props => {
       <Switch>
         <Route exact path="/profiles" component={Profiles} />
         <Route exact path="/profile/:id" component={Profile} />
-        <Route exact path="/posts" component={Posts} />
-        <Route exact path="/projects" component={Projects} />
+        <Route exact path="/posts" component={PostPage} />
+        <Route exact path="/projects" component={ProjectPage} />
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
         <PrivateRoute exact path="/create-profile" component={ProfileForm} />
         <PrivateRoute exact path="/edit-profile" component={ProfileForm} />

@@ -9,6 +9,7 @@ import ProfileExperience from './ProfileExperience';
 import ProfileEducation from './ProfileEducation';
 import ProfileGithub from './ProfileGithub';
 import { getProfileById } from '../../actions/profile';
+import Table from '../table/Table';
 
 
 const Profile = ({ 
@@ -33,7 +34,10 @@ const Profile = ({
 
                     <div class="profile-grid my-1">
                         <ProfileTop profile={profile} />
-                        <ProfileAbout profile={profile} />
+                        <div id="posts">
+                            <Table about={true} profile={profile} />
+                        </div>
+                        {/* <ProfileAbout profile={profile} />
                         <div className="profile-exp bg-white p-2">
                             <h2 className="text-primary">Experience</h2>
                             {profile.experience.length > 0 ? (<Fragment>
@@ -50,11 +54,11 @@ const Profile = ({
                                     <ProfileEducation key={education._id} education={education} />
                                 ))}
                             </Fragment>) : (<h4>No education credentials</h4>)}
-                        </div>
+                        </div> */}
 
-                        {profile.githubusername && (
+                        {/* {profile.githubusername && (
                             <ProfileGithub username={profile.githubusername} />
-                        )}
+                        )} */}
                     </div>
                 </Fragment>}
         </Fragment>

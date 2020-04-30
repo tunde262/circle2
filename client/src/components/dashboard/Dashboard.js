@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 
+import Actions from './Actions';
 import About from './About';
-import Experience from './Experience';
-import Education from './Education';
+import Table from '../table/Table';
 
 const Dashboard = ({ getCurrentProfile, deleteAccount, auth: { user }, profile: { profile, loading } }) => {
     useEffect(() => {
@@ -23,46 +23,26 @@ const Dashboard = ({ getCurrentProfile, deleteAccount, auth: { user }, profile: 
                     </ol>
                 </nav>
             </div>
-            {loading && profile === null ? <Spinner /> : <div className="portfolio">
+            {loading || profile === null ? <Spinner /> : <div className="portfolio">
                 <section className="portfolio-block">
                     <img src="https://www.hardiagedcare.com.au/wp-content/uploads/2019/02/default-avatar-profile-icon-vector-18942381.jpg" alt='img' className="round-img" />
                     {profile !== null && (
-                        <About profile={profile} />
+                        <Fragment>
+                            <Actions profile={profile} />
+                            <About profile={profile} />
+                            <div className="my-2">
+                                <button className="ghost2" onClick={() => deleteAccount()}>
+                                    <i className="fas fa-user-minus"></i> Delete My Account
+                                </button>
+                            </div>
+                        </Fragment>
                     )}
                 </section>
                 <section className="portfolio-header">
                     {/* <p><i className="fas fa-user"></i> Welcome { user && user.name }</p> */}
                 </section>
                 <section className="portfolio-work">
-                    <div className="thead">
-                        <nav>
-                            <ul className="nav-links">
-                                <li><h2><a href="/dashboard">About</a></h2></li>
-                                <li><h2><a href="/dashboard">Projects</a></h2></li>
-                                <li><h2><a href="/dashboard">Blog Posts</a></h2></li>
-                                <li><h2><a href="/dashboard">Repositories</a></h2></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    {profile !== null ? (
-                        <Fragment>
-                            <Experience experience={profile.experience} />
-                            <Education education={profile.education} />
-
-                            <div className="my-2">
-                                <button onClick={() => deleteAccount()}>
-                                    <i className="fas fa-user-minus"></i> Delete My Account
-                                </button>
-                            </div>
-                        </Fragment>
-                    ) : (
-                        <Fragment>
-                            <p>You have not setup a profile, please add some info</p>
-                            <Link to='/create-profile' className="btn btn-primary my-1">
-                                Create Profile
-                            </Link>
-                        </Fragment>
-                    )}
+                    <Table about={false} profile={profile}/>
                 </section>
             </div>
         }

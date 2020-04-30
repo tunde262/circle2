@@ -427,6 +427,8 @@ input {
   background: #f4f4f4; }
 
 .thead {
+  display: flex;
+  justify-content: center;
   border-bottom: #ff4b2b 5px solid; }
 
 .nav {
@@ -618,73 +620,150 @@ header {
 
 #posts {
   padding: 0 80px; }
-  #posts .cards {
-    column-count: 3;
-    margin: 1.5em auto;
-    column-gap: 1.5em; }
-    #posts .cards .card {
-      display: inline-block;
-      margin: 0 0 1.5em;
+
+.cards {
+  column-count: 3;
+  margin: 1.5em auto;
+  column-gap: 1.5em; }
+  .cards .card {
+    display: inline-block;
+    margin: 0 0 1.5em;
+    width: 100%;
+    height: auto;
+    background-color: #f4f4f4;
+    margin: 1rem;
+    cursor: pointer;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    transition: all 0.3s ease 0s;
+    break-after: avoid-column; }
+    .cards .card:hover {
+      transform: scale(0.8); }
+    .cards .card .card_image-container {
       width: 100%;
-      height: auto;
-      background-color: #f4f4f4;
-      margin: 1rem;
-      cursor: pointer;
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
-      transition: all 0.3s ease 0s;
-      break-after: avoid-column; }
-      #posts .cards .card:hover {
-        transform: scale(0.8); }
-      #posts .cards .card .card_image-container {
+      padding-top: 56.25%;
+      overflow: hidden;
+      position: relative; }
+      .cards .card .card_image-container img {
         width: 100%;
-        padding-top: 56.25%;
-        overflow: hidden;
-        position: relative; }
-        #posts .cards .card .card_image-container img {
-          width: 100%;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%); }
-      #posts .cards .card .card_content {
-        padding: 1rem; }
-        #posts .cards .card .card_content .card_title {
-          margin-bottom: 1rem; }
-        #posts .cards .card .card_content .card_info {
-          display: flex;
-          align-self: end;
-          align-items: center; }
-          #posts .cards .card .card_content .card_info .card_price {
-            margin-left: auto;
-            padding: 5px 20px;
-            background-color: #dbdbdb;
-            border-radius: 20px; }
-      #posts .cards .card_stats {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr;
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        background: #44b115; }
-        #posts .cards .card_stats .stat {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-direction: column;
-          padding: 10px;
-          color: #fff; }
-        #posts .cards .card_stats .type {
-          font-size: 11px;
-          font-weight: 300;
-          text-transform: uppercase; }
-        #posts .cards .card_stats .value {
-          font-size: 22px;
-          font-weight: 500; }
-          #posts .cards .card_stats .value sup {
-            font-size: 12px; }
-        #posts .cards .card_stats .border {
-          border-left: 1px solid #3b9a12; }
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); }
+    .cards .card .card_content {
+      padding: 1rem; }
+      .cards .card .card_content .card_title {
+        margin-bottom: 1rem; }
+      .cards .card .card_content .card_info {
+        display: flex;
+        align-self: end;
+        align-items: center; }
+        .cards .card .card_content .card_info .card_price {
+          margin-left: auto;
+          padding: 5px 20px;
+          background-color: #dbdbdb;
+          border-radius: 20px; }
+    .cards .card_stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      background: #859ca4; }
+      .cards .card_stats .stat {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px;
+        color: #000; }
+      .cards .card_stats .type {
+        font-size: 11px;
+        font-weight: 300;
+        text-transform: uppercase; }
+      .cards .card_stats .value {
+        font-size: 22px;
+        font-weight: 500; }
+        .cards .card_stats .value sup {
+          font-size: 12px; }
+      .cards .card_stats .border {
+        border-left: 1px solid #769099; }
+
+/* Profile Page */
+.profile-grid {
+  display: grid;
+  grid-template-areas: 'top' 'about' 'creds' 'github';
+  grid-gap: 1rem; }
+
+.profile-top {
+  grid-area: top;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center; }
+
+.profile-top img {
+  width: 250px; }
+
+.profile-top .icons a {
+  color: #fff;
+  margin: 0 0.3rem; }
+
+.profile-top .icons a:hover {
+  color: var(--dark-color); }
+
+.profile-about {
+  grid-area: about;
+  text-align: center; }
+
+.skills {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; }
+
+.profile-creds {
+  grid-area: creds;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem; }
+
+.profile-exp,
+.profile-edu {
+  margin: 1rem 0; }
+
+.profile-exp h2,
+.profile-edu h2 {
+  margin-bottom: 1rem; }
+
+.profile-exp > div,
+.profile-edu > div {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: #ccc 1px dotted; }
+
+.profile-exp > div:last-child,
+.profile-edu > div:last-child {
+  border: 0; }
+
+.profile-exp p,
+.profile-edu p {
+  margin: 0.5rem 0; }
+
+.profile-github {
+  grid-area: github; }
+
+.profile-github .repo {
+  display: flex; }
+
+.profile-github .repo > div:first-child {
+  flex: 7;
+  flex-basis: 70%; }
+
+.profile-github > div:last-child {
+  flex: 3;
+  flex-basis: 20%; }
 
 .box-container {
   padding: 50px;
@@ -853,8 +932,11 @@ header {
     width: 200px;
     margin: auto; }
   .profile-grid {
-    grid-template-areas: 'top' 'about' 'exp' 'edu' 'github'; }
-  .profile-about .skills {
+    grid-template-areas: 'top' 'about' 'creds' 'github'; }
+  .skills {
+    flex-wrap: wrap; }
+  .profile-creds {
+    display: flex;
     flex-direction: column; }
   .dash-buttons a {
     display: block;

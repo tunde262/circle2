@@ -10,16 +10,11 @@ const Posts = ({ getPosts, post: { posts } }) => {
   }, [getPosts]);
 
   return (
-    <main id="home">
-      <h1 className="large text-primary">Stories</h1>
-      <section id="posts">
-        <div className="cards">
-          {posts.map((post) => (
-            <PostCard key={post._id} post={post} />
-          ))}
-        </div>
-      </section>
-    </main>
+    <div className="cards">
+      {posts.map((post) => (
+        <PostCard key={post._id} post={post} />
+      ))}
+    </div>
   );
 };
 

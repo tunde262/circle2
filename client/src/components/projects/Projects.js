@@ -10,16 +10,11 @@ const Projects = ({ getProjects, project: { projects } }) => {
   }, [getProjects]);
 
   return (
-    <main id="home">
-      <h1 className="large text-primary">Projects</h1>
-      <section id="posts">
-        <div className="cards">
-          {projects.map((project) => (
-            <ProjectCard key={project._id} project={project} />
-          ))}
-        </div>
-      </section>
-    </main>
+    <div className="cards">
+      {projects.map((project) => (
+        <ProjectCard key={project._id} project={project} />
+      ))}
+    </div>
   );
 };
 
