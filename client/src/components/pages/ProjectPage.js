@@ -11,4 +11,4 @@ const ProjectPage = () => (
     </main>
 );
 
-export default PostPage;
+export default ProjectPage;

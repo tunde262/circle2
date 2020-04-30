@@ -10,7 +10,7 @@ import AddEducation from '../profile-form/AddEducation';
 import Profiles from '../profiles/Profiles';
 import Profile from '../profile/Profile';
 import PostPage from '../pages/PostPage';
-import ProjectPage from '../projects/Projects';
+import ProjectPage from '../pages/ProjectPage';
 import Post from '../post/Post';
 import CreatePage from '../profile-form/createContent/CreatePage';
 import NotFound from '../layout/NotFound';
