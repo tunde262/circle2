@@ -23,10 +23,10 @@ const Dashboard = ({ getCurrentProfile, deleteAccount, auth: { user }, profile: 
                     </ol>
                 </nav>
             </div>
-            {loading || profile === null ? <Spinner /> : <div className="portfolio">
+            {loading && profile === null ? <Spinner /> : <div className="portfolio">
                 <section className="portfolio-block">
                     <img src="https://www.hardiagedcare.com.au/wp-content/uploads/2019/02/default-avatar-profile-icon-vector-18942381.jpg" alt='img' className="round-img" />
-                    {profile !== null && (
+                    {profile !== null ? (
                         <Fragment>
                             <Actions profile={profile} />
                             <About profile={profile} />
@@ -36,13 +36,24 @@ const Dashboard = ({ getCurrentProfile, deleteAccount, auth: { user }, profile: 
                                 </button>
                             </div>
                         </Fragment>
+                    ): (
+                        <h2>{user.name}</h2>
                     )}
                 </section>
                 <section className="portfolio-header">
                     {/* <p><i className="fas fa-user"></i> Welcome { user && user.name }</p> */}
                 </section>
                 <section className="portfolio-work">
-                    <Table about={false} profile={profile}/>
+                    {profile !== null ? (
+                        <Table about={false} profile={profile}/>
+                    ) :(
+                        <Fragment>
+                            <p>You have not setup a profile, please add some info</p>
+                            <Link to='/create-profile' className="btn btn-primary my-1">
+                                Create Profile
+                            </Link>
+                        </Fragment>
+                    )}
                 </section>
             </div>
         }
