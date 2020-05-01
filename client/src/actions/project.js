@@ -28,6 +28,40 @@ export const getProjects = () => async dispatch => {
   }
 };
 
+// Get current user's projects
+export const getMyProjects = () => async dispatch => {
+  try {
+      const res = await axios.get('/api/projects/me');
+
+      dispatch({
+          type: GET_PROJECTS,
+          payload: res.data
+      });
+  } catch (err) {
+      dispatch({
+          type: PROJECT_ERROR,
+          payload: { msg: err.response.statusText, status: err.response.status }
+      });
+  }
+}
+
+// Get projects by id
+export const getProjectsById = id => async dispatch => {
+  try {
+      const res = await axios.get(`/api/projects/user/${id}`);
+
+      dispatch({
+          type: GET_PROJECTS,
+          payload: res.data
+      });
+  } catch (err) {
+      dispatch({
+          type: PROJECT_ERROR,
+          payload: { msg: err.response.statusText, status: err.response.status }
+      });
+  }
+}
+
 // Add like
 export const addLike = id => async dispatch => {
   try {

@@ -1,13 +1,57 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const request = require('request');
 const config = require('config');
+const db = config.get('mongoURI');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
 
+//gridfs
+const crypto = require('crypto');
+const multer = require('multer');
+const GridFsStorage = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
+const path = require('path');
+
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 const Post = require('../../models/Post');
+
+// Create Mongo Connection
+const conn = mongoose.createConnection(db,{
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+});
+
+let gfs;
+
+conn.once('open', () => {
+    // Init stream
+    gfs = Grid(conn.db, mongoose.mongo);
+    gfs.collection('images');
+})
+
+// Create Storage engine
+const storage = new GridFsStorage({
+    url: db,
+    file: (req, file) => {
+        return new Promise((resolve, reject) => {
+            crypto.randomBytes(16, (err, buf) => {
+                if (err) {
+                    return reject(err);
+                }
+                const filename = buf.toString('hex') + path.extname(file.originalname);
+                const fileInfo = {
+                    filename: filename,
+                    bucketName: 'images'
+                };
+                resolve(fileInfo);
+            });
+        });
+    }
+});
+const upload = multer({ storage });
 
 // @route GET api/profile/me
 // @desc Ge current user's profile
@@ -30,10 +74,10 @@ router.get('/me', auth, async (req, res) => {
 // @route POST api/profile
 // @desc Create or update user profile
 // @access Private
-router.post('/', [ auth, [
+router.post('/', upload.single('file'), [ auth, [
         check('status', 'Status is required').not().isEmpty(),
         check('skills', 'Skills is required').not().isEmpty()
-    ]], 
+    ]],
     async (req, res) => {
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
@@ -64,6 +108,8 @@ router.post('/', [ auth, [
         if(bio) profileFields.bio = bio;
         if(status) profileFields.status = status;
         if(githubusername) profileFields.githubusername = githubusername;
+        if(req.file.id) profileFields.img = req.file.id;
+        if(req.file.filename) profileFields.img_name = req.file.filename;
         if(skills) {
             profileFields.skills = skills.split(',').map(skill => skill.trim()); //trim makes sure theres no spaces
         }
@@ -295,6 +341,74 @@ router.get('/github/:username', (req, res) => {
         res.status(500).send('Servor Error');
     }
 })
+
+// ---- GridFS ----
+
+//@route GET /files
+//@desc Display all image files in JSON
+router.get('/files', (req, res) => {
+    gfs.files.find().toArray((err, files) => {
+        // Check if files
+        if(!files || files.length === 0) {
+            return res.status(404).json({
+                err: 'No files exist'
+            });
+        }
+
+        //Files exist
+        return res.json(files);
+    });
+});
+
+//@route GET /files/:filename
+//@desc Display single image object
+router.get('/files/:filename', (req, res) => {
+    gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+        // Check if file
+        if(!file || file.length === 0) {
+            return res.status(404).json({
+                err: 'No files exist'
+            });
+        }
+        //File exists
+        return res.json(file);
+    });
+});
+
+//@route GET /image/:filename
+//@desc Display Image
+router.get('/image/:filename', (req, res) => {
+    gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+        // Check if file
+        if(!file || file.length === 0) {
+            return res.status(404).json({
+                err: 'No files exist'
+            });
+        }
+        
+        //Check if image
+        if(file.contentType === 'image/jpeg' || file.contentType === 'img/png' || file.contentType === 'image/png') {
+            //  Read output to browser
+            const readstream = gfs.createReadStream(file.filename);
+            readstream.pipe(res);
+        } else {
+            res.status(404).json({
+                err: 'Not an image'
+            });
+        }
+    });
+});
+
+//@route DELETE /files/:id
+//@desc Delete image
+router.delete('/files/:id', (req, res) => {
+    gfs.remove({ _id: req.params.id }, (err) => {
+        if (err) {
+            return res.status(500).json({ success: false })
+        }
+        return res.json({ success: true });
+    });
+});
 
 
 module.exports = router;

@@ -5,9 +5,6 @@ import PostCard from './PostCard';
 import { getPosts } from '../../actions/post';
 
 const Posts = ({ getPosts, post: { posts } }) => {
-  useEffect(() => {
-    getPosts();
-  }, [getPosts]);
 
   return (
     <div className="cards">

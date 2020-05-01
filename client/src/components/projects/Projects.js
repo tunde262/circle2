@@ -5,9 +5,6 @@ import ProjectCard from './ProjectCard';
 import { getProjects } from '../../actions/project';
 
 const Projects = ({ getProjects, project: { projects } }) => {
-  useEffect(() => {
-    getProjects();
-  }, [getProjects]);
 
   return (
     <div className="cards">

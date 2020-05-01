@@ -9,6 +9,13 @@ const ProjectSchema = new Schema({
     name: {
         type: String
     },
+    img: {
+        type: Schema.Types.ObjectId, // There is no need to create references here
+        ref: 'uploads'
+    },
+    img_name: {
+        type: String
+    },
     title: {
         type: String,
         required: true

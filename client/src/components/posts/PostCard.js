@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
-// import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
+import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { addLike, removeLike, deletePost } from '../../actions/post';
 
@@ -10,15 +10,23 @@ const PostCard = ({
   removeLike,
   deletePost,
   auth,
-  post: { _id, title, text, name, user, likes, comments, date },
+  post: { _id, title, text, img, img_name, name, user, likes, comments, date },
   showActions
 }) => (
     <div className="card">
-        <div className="card_image-container">
-            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiQjEyMDd9&auto=format&fit=crop&w=1200&q=80" alt='img' />
+        <div className="card_content project">
+            <Link to={`/profile/${user}`} className="card_author">
+                <small>@{name}</small>
+            </Link>
+            <Moment format='MM/DD/YYYY' className="post-date">{date}</Moment>
         </div>
+        {img && (
+          <div className="card_image-container">
+              <img src={`/api/projects/image/${img_name}`} alt='img' />
+          </div>
+        )}
         <div className="card_content">
-            <h2 className="card_title text--medium">
+            <h2 className="card_title">
                 {title}
             </h2>
             <p>
@@ -31,16 +39,23 @@ const PostCard = ({
         </div>
         <div className="card_stats">
             <div className="stat">
-                <div className="value">4<sup>m</sup></div>
-                <div className="type">read</div>
+                <div className="value">
+                  <i className="far fa-heart" onClick={() => addLike(_id)}></i>
+                  {' '}
+                  <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
+                  {' '}
+                  <span><i className='fas fa-thumbs-down' onClick={() => removeLike(_id)} /></span>
+                </div>
             </div>
             <div className="stat border">
                 <div className="value">5123</div>
                 <div className="type">views</div>
             </div>
             <div className="stat border">
-                <div className="value">32</div>
-                <div className="type">comments</div>
+              <i className="far fa-comment-alt"></i>{' '}
+              {comments.length > 0 && (
+                <span className='comment-count'>{comments.length}</span>
+              )}
             </div>
         </div>
     </div>

@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const ProfileTop = ({ profile: {
+    img,
+    img_name,
     status,
     company,
     location,
@@ -11,11 +13,11 @@ const ProfileTop = ({ profile: {
 }}) => {
     return (
         <div className="profile-top bg-primary p-2">
-          <img
-            className="round-img my-1"
-            src="https://www.hardiagedcare.com.au/wp-content/uploads/2019/02/default-avatar-profile-icon-vector-18942381.jpg"
-            alt=""
-          />
+          {img ? (
+              <img src={`/api/profile/image/${img_name}`} alt='img' className="round-img" />
+          ) : (
+              <img src="https://www.hardiagedcare.com.au/wp-content/uploads/2019/02/default-avatar-profile-icon-vector-18942381.jpg" alt='img' className="round-img" />
+          )}
           <h1 className="large">{name}</h1>
             <p className="lead">{status} {company && <span> at {company}</span>}</p>
           <p>{location && <span>{location}</span>}</p>

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../../actions/profile';
 
 const initialState = {
+  file: '',
   company: '',
   website: '',
   location: '',
@@ -46,6 +47,7 @@ const ProfileForm = ({
   }, [loading, getCurrentProfile, profile]);
 
   const {
+    file,
     company,
     website,
     location,
@@ -60,13 +62,32 @@ const ProfileForm = ({
     instagram
   } = formData;
 
+  const fileChanged = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.files[0] });
+  }
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    createProfile(formData, history, profile ? true : false);
+
+    let data = new FormData();
+    data.append('file', file);
+    data.append('company', company);
+    data.append('website', website);
+    data.append('location', location);
+    data.append('status', status);
+    data.append('skills', skills);
+    data.append('githubusername', githubusername);
+    data.append('bio', bio);
+    data.append('twitter', twitter);
+    data.append('facebook', facebook);
+    data.append('linkedin', linkedin);
+    data.append('youtube', youtube);
+    data.append('instagram', instagram);
+
+    createProfile(data, history, profile ? true : false);
   };
 
   return (
@@ -77,6 +98,17 @@ const ProfileForm = ({
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={onSubmit}>
+        <div className="form-group">
+          <label>Img</label>
+          <input
+              type="file"
+              name="file"
+              id="file"
+              className="form-control"
+              placeholder="Start with ../img/"
+              onChange={fileChanged}
+          />
+        </div>
         <div className="form-group">
           <select name="status" value={status} onChange={onChange}>
             <option>* Select Professional Status</option>

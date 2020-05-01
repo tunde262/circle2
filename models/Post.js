@@ -6,6 +6,13 @@ const PostSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
     },
+    img: {
+        type: Schema.Types.ObjectId, // There is no need to create references here
+        ref: 'uploads'
+    },
+    img_name: {
+        type: String
+    },
     title: {
         type: String,
         required: true,

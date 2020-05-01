@@ -8,14 +8,32 @@ import TextField from 'material-ui/TextField';
 const PostForm = ({ addPost }) => {
   const [postData, setPostData] = useState({
       title: '',
-      text: ''
+      text: '',
+      file: ''
   });
 
-  const { title, text } = postData;
+  const { title, text, file } = postData;
+
+  const fileChanged = e => {
+    setPostData({ ...postData, [e.target.name]: e.target.files[0] });
+}
 
   const onChange = e => {
     setPostData({ ...postData, [e.target.name]: e.target.value });
   } 
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    let data = new FormData();
+    data.append('file', file);
+    data.append('title', title);
+    data.append('text', text);
+
+    addPost(data);
+    
+    setPostData({title: '', text: '', file: ''});
+  };
 
   return (
         <MuiThemeProvider>
@@ -26,11 +44,7 @@ const PostForm = ({ addPost }) => {
                 </div>
                 <form
                     className='form my-1'
-                    onSubmit={e => {
-                    e.preventDefault();
-                    addPost({ title, text });
-                    setPostData({title: '', text: ''});
-                    }}
+                    onSubmit={onSubmit}
                 >
                     <TextField 
                         hintText="Enter A Title For This Post"
@@ -40,6 +54,14 @@ const PostForm = ({ addPost }) => {
                         defaultValue={title}
                         required
                         style={{marginBottom: "1rem"}}
+                    />
+                    <input
+                        type="file"
+                        name="file"
+                        id="file"
+                        className="form-control"
+                        placeholder="Start with ../img/"
+                        onChange={fileChanged}
                     />
                     <textarea
                     name='text'

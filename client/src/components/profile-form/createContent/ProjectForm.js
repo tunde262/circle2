@@ -8,14 +8,31 @@ const ProjectForm = ({ addProject }) => {
     const [postData, setPostData] = useState({
         title: '',
         description: '',
-        githublink: ''
+        githublink: '',
+        file: '',
     });
   
-    const { title, description, githublink } = postData;
+    const { title, description, githublink, file } = postData;
+
+    const fileChanged = e => {
+        setPostData({ ...postData, [e.target.name]: e.target.files[0] });
+    }
 
     const onChange = e => {
         setPostData({ ...postData, [e.target.name]: e.target.value });
     } 
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+    
+        let data = new FormData();
+        data.append('file', file);
+        data.append('title', title);
+        data.append('description', description);
+        data.append('githublink', githublink);
+    
+        addProject(data);
+      };
 
   return (
         <main id="home" style={{textAlign: "center"}}>
@@ -26,10 +43,7 @@ const ProjectForm = ({ addProject }) => {
         <small>* = required field</small>
         <form
             className='form'
-            onSubmit={e => {
-            e.preventDefault();
-            addProject({title, description, githublink});
-            }}
+            onSubmit={onSubmit}
         >
             <div className='form-group'>
                 <input
@@ -54,6 +68,17 @@ const ProjectForm = ({ addProject }) => {
             <div className="form-group social-input">
                 <i className="fab fa-github fa-2x"></i>
                 <input type="text" placeholder="Github URL" name="githublink" value={githublink} onChange={e => onChange(e)} />
+            </div>
+            <div className="form-group">
+                <label>Img</label>
+                <input
+                    type="file"
+                    name="file"
+                    id="file"
+                    className="form-control"
+                    placeholder="Start with ../img/"
+                    onChange={fileChanged}
+                />
             </div>
             <input type='submit' className='btn btn-primary my-1' />
             <Link className='btn btn-light my-1' to='/dashboard'>

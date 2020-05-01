@@ -638,7 +638,7 @@ header {
     transition: all 0.3s ease 0s;
     break-after: avoid-column; }
     .cards .card:hover {
-      transform: scale(0.8); }
+      transform: scale(1.015); }
     .cards .card .card_image-container {
       width: 100%;
       padding-top: 56.25%;
@@ -651,9 +651,23 @@ header {
         left: 50%;
         transform: translate(-50%, -50%); }
     .cards .card .card_content {
-      padding: 1rem; }
+      padding: 1rem;
+      width: 100%; }
+      .cards .card .card_content.project {
+        display: grid;
+        grid-template-areas: 2fr 1fr;
+        grid-template-areas: 'name date' 'title title'; }
+      .cards .card .card_content .card_author {
+        grid-area: name; }
+        .cards .card .card_content .card_author:hover {
+          text-decoration: underline; }
+      .cards .card .card_content .post-date {
+        grid-area: date;
+        justify-self: end; }
       .cards .card .card_content .card_title {
-        margin-bottom: 1rem; }
+        margin-bottom: 5px; }
+        .cards .card .card_content .card_title .text--medium {
+          grid-area: title; }
       .cards .card .card_content .card_info {
         display: flex;
         align-self: end;
@@ -669,7 +683,7 @@ header {
       grid-template-rows: 1fr;
       border-bottom-left-radius: 15px;
       border-bottom-right-radius: 15px;
-      background: #859ca4; }
+      background: #85c760; }
       .cards .card_stats .stat {
         display: flex;
         align-items: center;
@@ -677,6 +691,9 @@ header {
         flex-direction: column;
         padding: 10px;
         color: #000; }
+      .cards .card_stats .fa-heart:hover {
+        transition: all 0.5s ease-out;
+        color: #ff4b2b; }
       .cards .card_stats .type {
         font-size: 11px;
         font-weight: 300;
@@ -687,7 +704,7 @@ header {
         .cards .card_stats .value sup {
           font-size: 12px; }
       .cards .card_stats .border {
-        border-left: 1px solid #769099; }
+        border-left: 1px solid #77c04d; }
 
 /* Profile Page */
 .profile-grid {

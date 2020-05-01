@@ -4,15 +4,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
+import { getMyProjects } from '../../actions/project';
+import { getMyPosts } from '../../actions/post';
 
 import Actions from './Actions';
 import About from './About';
 import Table from '../table/Table';
 
-const Dashboard = ({ getCurrentProfile, deleteAccount, auth: { user }, profile: { profile, loading } }) => {
+const Dashboard = ({ getCurrentProfile, deleteAccount, getMyProjects, getMyPosts, auth: { user }, profile: { profile, loading } }) => {
     useEffect(() => {
         getCurrentProfile();
-    }, [getCurrentProfile]);
+        getMyProjects();
+        getMyPosts();
+    }, [getCurrentProfile, getMyProjects, getMyPosts]);
 
     return (
         <main id="home">
@@ -25,7 +29,11 @@ const Dashboard = ({ getCurrentProfile, deleteAccount, auth: { user }, profile: 
             </div>
             {loading && profile === null ? <Spinner /> : <div className="portfolio">
                 <section className="portfolio-block">
-                    <img src="https://www.hardiagedcare.com.au/wp-content/uploads/2019/02/default-avatar-profile-icon-vector-18942381.jpg" alt='img' className="round-img" />
+                    {profile !== null && profile.img ? (
+                        <img src={`/api/profile/image/${profile.img_name}`} alt='img' className="round-img" />
+                    ) : (
+                        <img src="https://www.hardiagedcare.com.au/wp-content/uploads/2019/02/default-avatar-profile-icon-vector-18942381.jpg" alt='img' className="round-img" />
+                    )}
                     {profile !== null ? (
                         <Fragment>
                             <Actions profile={profile} />
@@ -66,6 +74,8 @@ Dashboard.propTypes = {
     auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,
     deleteAccount: PropTypes.func.isRequired,
+    getMyProjects: PropTypes.func.isRequired,
+    getMyPosts: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -73,4 +83,4 @@ const mapStateToProps = state => ({
     profile: state.profile
 })
 
-export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount, getMyProjects, getMyPosts })(Dashboard);
