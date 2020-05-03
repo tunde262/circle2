@@ -55,6 +55,7 @@ const ProjectForm = ({ addProject }) => {
                     required
                 />
             </div>
+            <div className="line"></div>
             <div className='form-group'>
             <textarea
                 name='description'
@@ -65,10 +66,12 @@ const ProjectForm = ({ addProject }) => {
                 onChange={e => onChange(e)}
             />
             </div>
+            <div className="line"></div>
             <div className="form-group social-input">
                 <i className="fab fa-github fa-2x"></i>
                 <input type="text" placeholder="Github URL" name="githublink" value={githublink} onChange={e => onChange(e)} />
             </div>
+            <div className="line"></div>
             <div className="form-group">
                 <label>Img</label>
                 <input
@@ -80,6 +83,7 @@ const ProjectForm = ({ addProject }) => {
                     onChange={fileChanged}
                 />
             </div>
+            <div className="line"></div>
             <input type='submit' className='btn btn-primary my-1' />
             <Link className='btn btn-light my-1' to='/dashboard'>
             Go Back

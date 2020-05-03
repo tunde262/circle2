@@ -73,7 +73,7 @@ const ProfileForm = ({
     e.preventDefault();
 
     let data = new FormData();
-    data.append('file', file);
+    if(file !== '') data.append('file', file);
     data.append('company', company);
     data.append('website', website);
     data.append('location', location);
@@ -98,8 +98,7 @@ const ProfileForm = ({
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={onSubmit}>
-        <div className="form-group">
-          <label>Img</label>
+        <label className='form-group'>Profile Img.
           <input
               type="file"
               name="file"
@@ -108,10 +107,11 @@ const ProfileForm = ({
               placeholder="Start with ../img/"
               onChange={fileChanged}
           />
-        </div>
-        <div className="form-group">
+        </label>
+        <div className="line"></div>
+        <label className="form-group">Position 
           <select name="status" value={status} onChange={onChange}>
-            <option>* Select Professional Status</option>
+            <option>* What's Your Current Position</option>
             <option value="Developer">Developer</option>
             <option value="Junior Developer">Junior Developer</option>
             <option value="Senior Developer">Senior Developer</option>
@@ -124,8 +124,9 @@ const ProfileForm = ({
           <small className="form-text">
             Give us an idea of where you are at in your career
           </small>
-        </div>
-        <div className="form-group">
+        </label>
+        <div className="line"></div>
+        <label className="form-group">Company
           <input
             type="text"
             placeholder="Company"
@@ -136,8 +137,9 @@ const ProfileForm = ({
           <small className="form-text">
             Could be your own company or one you work for
           </small>
-        </div>
-        <div className="form-group">
+        </label>
+        <div className="line"></div>
+        <label className="form-group">Website
           <input
             type="text"
             placeholder="Website"
@@ -148,8 +150,9 @@ const ProfileForm = ({
           <small className="form-text">
             Could be your own or a company website
           </small>
-        </div>
-        <div className="form-group">
+        </label>
+        <div className="line"></div>
+        <label className="form-group">Location
           <input
             type="text"
             placeholder="Location"
@@ -160,8 +163,9 @@ const ProfileForm = ({
           <small className="form-text">
             City & state suggested (eg. Boston, MA)
           </small>
-        </div>
-        <div className="form-group">
+        </label>
+        <div className="line"></div>
+        <label className="form-group">Skills
           <input
             type="text"
             placeholder="* Skills"
@@ -172,8 +176,9 @@ const ProfileForm = ({
           <small className="form-text">
             Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)
           </small>
-        </div>
-        <div className="form-group">
+        </label>
+        <div className="line"></div>
+        <label className="form-group">Github
           <input
             type="text"
             placeholder="Github Username"
@@ -185,8 +190,9 @@ const ProfileForm = ({
             If you want your latest repos and a Github link, include your
             username
           </small>
-        </div>
-        <div className="form-group">
+        </label>
+        <div className="line"></div>
+        <label className="form-group">Bio
           <textarea
             placeholder="A short bio of yourself"
             name="bio"
@@ -194,7 +200,7 @@ const ProfileForm = ({
             onChange={onChange}
           />
           <small className="form-text">Tell us a little about yourself</small>
-        </div>
+        </label>
 
         <div className="my-2">
           <button
@@ -202,14 +208,14 @@ const ProfileForm = ({
             type="button"
             className="btn btn-light"
           >
-            Add Social Network Links
+            Click To Add Social
           </button>
           <span>Optional</span>
         </div>
 
         {displaySocialInputs && (
           <Fragment>
-            <div className="form-group social-input">
+            <label className="form-group social-input">
               <i className="fab fa-twitter fa-2x" />
               <input
                 type="text"
@@ -218,9 +224,9 @@ const ProfileForm = ({
                 value={twitter}
                 onChange={onChange}
               />
-            </div>
-
-            <div className="form-group social-input">
+            </label>
+            <div className="line"></div>
+            <label className="form-group social-input">
               <i className="fab fa-facebook fa-2x" />
               <input
                 type="text"
@@ -229,8 +235,8 @@ const ProfileForm = ({
                 value={facebook}
                 onChange={onChange}
               />
-            </div>
-
+            </label>
+            <div className="line"></div>
             <div className="form-group social-input">
               <i className="fab fa-youtube fa-2x" />
               <input
@@ -241,8 +247,8 @@ const ProfileForm = ({
                 onChange={onChange}
               />
             </div>
-
-            <div className="form-group social-input">
+            <div className="line"></div>
+            <label className="form-group social-input">
               <i className="fab fa-linkedin fa-2x" />
               <input
                 type="text"
@@ -251,9 +257,9 @@ const ProfileForm = ({
                 value={linkedin}
                 onChange={onChange}
               />
-            </div>
-
-            <div className="form-group social-input">
+            </label>
+            <div className="line"></div>
+            <label className="form-group social-input">
               <i className="fab fa-instagram fa-2x" />
               <input
                 type="text"
@@ -262,10 +268,10 @@ const ProfileForm = ({
                 value={instagram}
                 onChange={onChange}
               />
-            </div>
+            </label>
           </Fragment>
         )}
-
+        <div className="line"></div>
         <input type="submit" className="btn btn-primary my-1" />
         <Link className="btn btn-light my-1" to="/dashboard">
           Go Back

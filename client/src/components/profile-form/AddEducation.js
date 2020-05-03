@@ -36,7 +36,7 @@ const AddEducation = ({ addEducation, history }) => {
           addEducation(formData, history);
         }}
       >
-        <div className='form-group'>
+        <label className='form-group'>Education
           <input
             type='text'
             placeholder='* School or Bootcamp'
@@ -45,8 +45,9 @@ const AddEducation = ({ addEducation, history }) => {
             onChange={e => onChange(e)}
             required
           />
-        </div>
-        <div className='form-group'>
+        </label>
+        <div className="line"></div>
+        <label className='form-group'>Degree
           <input
             type='text'
             placeholder='* Degree or Certificate'
@@ -55,8 +56,9 @@ const AddEducation = ({ addEducation, history }) => {
             onChange={e => onChange(e)}
             required
           />
-        </div>
-        <div className='form-group'>
+        </label>
+        <div className="line"></div>
+        <label className='form-group'>Field of Study
           <input
             type='text'
             placeholder='Field of Study'
@@ -64,8 +66,9 @@ const AddEducation = ({ addEducation, history }) => {
             value={fieldofstudy}
             onChange={e => onChange(e)}
           />
-        </div>
-        <div className='form-group'>
+        </label>
+        <div className="line"></div>
+        <label className='form-group'>From
           <h4>From Date</h4>
           <input
             type='date'
@@ -73,8 +76,9 @@ const AddEducation = ({ addEducation, history }) => {
             value={from}
             onChange={e => onChange(e)}
           />
-        </div>
-        <div className='form-group'>
+        </label>
+        <div className="line"></div>
+        <label className='form-group'>
           <p>
             <input
               type='checkbox'
@@ -88,8 +92,9 @@ const AddEducation = ({ addEducation, history }) => {
             />{' '}
             Current School
           </p>
-        </div>
-        <div className='form-group'>
+        </label>
+        <div className="line"></div>
+        <label className='form-group'>
           <h4>To Date</h4>
           <input
             type='date'
@@ -98,8 +103,9 @@ const AddEducation = ({ addEducation, history }) => {
             onChange={e => onChange(e)}
             disabled={toDateDisabled ? 'disabled' : ''}
           />
-        </div>
-        <div className='form-group'>
+        </label>
+        <div className="line"></div>
+        <label className='form-group'>Description
           <textarea
             name='description'
             cols='30'
@@ -108,7 +114,8 @@ const AddEducation = ({ addEducation, history }) => {
             value={description}
             onChange={e => onChange(e)}
           />
-        </div>
+        </label>
+        <div className="line"></div>
         <input type='submit' className='btn btn-primary my-1' />
         <Link className='btn btn-light my-1' to='/dashboard'>
           Go Back

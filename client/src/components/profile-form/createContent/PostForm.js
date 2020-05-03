@@ -55,6 +55,7 @@ const PostForm = ({ addPost }) => {
                         required
                         style={{marginBottom: "1rem"}}
                     />
+                    <div className="line"></div>
                     <input
                         type="file"
                         name="file"
@@ -63,6 +64,7 @@ const PostForm = ({ addPost }) => {
                         placeholder="Start with ../img/"
                         onChange={fileChanged}
                     />
+                    <div className="line"></div>
                     <textarea
                     name='text'
                     style={{width: "100%"}}
@@ -72,6 +74,7 @@ const PostForm = ({ addPost }) => {
                     onChange={e => onChange(e)}
                     required
                     />
+                    <div className="line"></div>
                     <input type='submit' className='btn btn-dark my-1' value='Submit' />
                 </form>
                 </div>

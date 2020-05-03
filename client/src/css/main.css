@@ -375,7 +375,8 @@ button {
   border: #ccc solid 1px; }
 
 .round-img {
-  border-radius: 50%; }
+  border-radius: 50%;
+  margin-bottom: 1rem; }
 
 .line {
   height: 1px;
@@ -574,6 +575,7 @@ header {
       margin-bottom: 1rem; }
     .portfolio-block .skills {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: center;
       text-align: center; }
@@ -683,7 +685,7 @@ header {
       grid-template-rows: 1fr;
       border-bottom-left-radius: 15px;
       border-bottom-right-radius: 15px;
-      background: #85c760; }
+      background: #a6ecfb; }
       .cards .card_stats .stat {
         display: flex;
         align-items: center;
@@ -692,7 +694,6 @@ header {
         padding: 10px;
         color: #000; }
       .cards .card_stats .fa-heart:hover {
-        transition: all 0.5s ease-out;
         color: #ff4b2b; }
       .cards .card_stats .type {
         font-size: 11px;
@@ -704,7 +705,7 @@ header {
         .cards .card_stats .value sup {
           font-size: 12px; }
       .cards .card_stats .border {
-        border-left: 1px solid #77c04d; }
+        border-left: 1px solid #8ee7fa; }
 
 /* Profile Page */
 .profile-grid {

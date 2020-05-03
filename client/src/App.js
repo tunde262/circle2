@@ -4,6 +4,7 @@ import './css/main.css';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Routes from './components/routing/Routes';
+import { createBrowserHistory as history } from 'history';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -23,7 +24,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <Fragment>
-          <Navbar />
+          <Navbar history={history} />
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route component={Routes} />

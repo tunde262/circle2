@@ -36,11 +36,10 @@ const ProjectCard = ({
         <div className="card_stats">
             <div className="stat">
                 <div className="value">
-                  <i className="far fa-heart" onClick={() => addLike(_id)}></i>
-                  {' '}
-                  <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
-                  {' '}
-                  <span><i className='fas fa-thumbs-down' onClick={() => removeLike(_id)} /></span>
+                  <i className="far fa-comment-alt"></i>{' '}
+                  {comments.length > 0 && (
+                    <span className='comment-count'>{comments.length}</span>
+                  )}
                 </div>
             </div>
             <div className="stat border">
@@ -48,10 +47,11 @@ const ProjectCard = ({
                 <div className="type">views</div>
             </div>
             <div className="stat border">
-              <i className="far fa-comment-alt"></i>{' '}
-              {comments.length > 0 && (
-                <span className='comment-count'>{comments.length}</span>
-              )}
+              <div className="value">
+                <i className="far fa-heart" onClick={() => addLike(_id)}></i>
+                {' '}
+                <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
+              </div>
             </div>
         </div>
     </div>

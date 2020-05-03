@@ -197,10 +197,13 @@ router.put('/like/:id', auth, async (req, res) => {
 
         // Check if project already liked by same user
         if(project.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
-            return res.status(400).json({ msg: 'Project already liked'});
-        }
+            // Get remove index
+            const removeIndex = project.likes.map(like => like.user.toString()).indexOf(req.user.id);
 
-        project.likes.unshift({ user: req.user.id });
+            project.likes.splice(removeIndex, 1);
+        } else {
+            project.likes.unshift({ user: req.user.id });
+        }
 
         await project.save();
 

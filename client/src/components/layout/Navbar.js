@@ -42,12 +42,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             {/* <li><a href="#"><i className="far fa-heart"></i></a></li>
             <li><a href="#"><i className="far fa-comment-alt"></i></a></li>
             <li><a href="#"><i className="fas fa-ellipsis-h"></i></a></li> */}
-            <li><Link to="/dashboard">My Portfolio</Link></li>
+            <li><Link to="/dashboard">Portfolio</Link></li>
             <li>
-                <a onClick={logout} href="#!">
+                <Link onClick={logout} to="/">
                     <i className="fas fa-sign-out-alt"></i>{' '}
                     <span className="hide-sm">Logout</span>
-                </a>
+                </Link>
             </li>
             <li><Link className="cta" to="/create"><button>Create Something...</button></Link></li>
         </Fragment>
